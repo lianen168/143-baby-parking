@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>143.baby</title>
+    <meta name="description" content="143.baby — A numeric code of love: I Love You, I Miss You, I Want You, Baby.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            line-height: 1.6; 
+            color: #5a4a42; 
+            background: linear-gradient(135deg, #fdf9fb 0%, #faf5f8 100%);
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+            text-align: center; 
+            position: relative; 
+            overflow-x: hidden; 
+        }
+        .light-effect { 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            width: min(120vw, 1000px); 
+            height: min(120vh, 1000px); 
+            background: radial-gradient(circle at center, rgba(233, 168, 184, 0.08) 0%, transparent 65%);
+            transform: translate(-50%, -50%); 
+            pointer-events: none; 
+            z-index: -1; 
+        }
+        .container { 
+            max-width: 760px; 
+            width: 100%; 
+            padding: 70px 40px; 
+            background: rgba(255, 253, 250, 0.85);
+            backdrop-filter: blur(12px); 
+            border-radius: 28px; 
+            box-shadow: 
+                0 15px 50px rgba(0, 0, 0, 0.06),
+                0 0 0 1px rgba(233, 168, 184, 0.2);
+            border: 1px solid rgba(233, 168, 184, 0.15); 
+            z-index: 1; 
+        }
+        h1 { 
+            font-size: clamp(4rem, 12vw, 7.2rem);
+            font-weight: 300; 
+            letter-spacing: 0.1em; 
+            margin-bottom: 20px; 
+            opacity: 0.95; 
+            color: #e9a8b8;
+        }
+        .domain { display: inline-block; transition: opacity 0.3s ease; }
+        .domain:hover { opacity: 0.85; }
+        .meaning { 
+            font-size: clamp(1.1rem, 4vw, 1.4rem); 
+            opacity: 0.88; 
+            max-width: 600px; 
+            margin: 0 auto 40px; 
+            line-height: 1.9; 
+            color: #7a6860;
+            font-style: italic;
+        }
+        .note-section { 
+            background: rgba(250, 245, 240, 0.6); 
+            border-radius: 18px; 
+            padding: 28px; 
+            margin: 40px 0; 
+            border: 1px solid rgba(212, 178, 160, 0.25); 
+        }
+        .note-text { 
+            font-size: 0.98rem; 
+            opacity: 0.75; 
+            line-height: 1.8; 
+            color: #8a7a70;
+        }
+        .contact-section { margin-top: 40px; }
+        .email-link { 
+            font-size: 1.5rem; 
+            color: #d4b2a0; 
+            text-decoration: none; 
+            font-family: 'Courier New', monospace; 
+            padding: 12px 26px; 
+            background: rgba(212, 178, 160, 0.12); 
+            border-radius: 12px; 
+            display: inline-block; 
+            border: 1px solid rgba(212, 178, 160, 0.4); 
+            transition: all 0.3s ease; 
+        }
+        .email-link:hover { 
+            background: rgba(212, 178, 160, 0.22); 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 16px rgba(212, 178, 160, 0.15); 
+        }
+        .contact-note { 
+            font-size: 0.95rem; 
+            opacity: 0.65; 
+            margin-top: 18px; 
+            font-style: italic; 
+            color: #a09080;
+        }
+        .footer { 
+            position: absolute; 
+            bottom: 30px; 
+            font-size: 0.85rem; 
+            opacity: 0.5; 
+            width: 100%; 
+            text-align: center; 
+            color: #b0a090;
+        }
+        @media (max-width: 768px) { 
+            .container { padding: 50px 30px; margin: 20px; } 
+            .email-link { font-size: 1.3rem; } 
+            h1 { 
+                font-size: clamp(3.4rem, 14vw, 5.8rem);
+                letter-spacing: 0.05em;
+            }
+            .meaning { 
+                font-size: clamp(1rem, 4.5vw, 1.3rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="light-effect"></div>
+    <div class="container">
+        <h1><span class="domain">143.baby</span></h1>
+        <div class="meaning">
+            143 = I Love You<br>
+            143 = I Miss You<br>
+            143 = I Want You, Baby
+        </div>
+        
+        <!-- 低调中性免责声明 -->
+        <div class="note-section">
+            <div class="note-text">
+                This numeric expression is a widely recognized cultural symbol of affection. 
+                This domain is reserved for future development and is not associated with any third party.
+            </div>
+        </div>
+        
+        <!-- 联系方式 -->
+        <div class="contact-section">
+            <a href="#" class="email-link" aria-label="Send email">
+                <span id="email-display">joshua369x@gmail.com</span>
+            </a>
+            <div class="contact-note">
+                For sincere inquiries only.
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        © <span id="currentYear"></span> 143.baby — All rights reserved.
+    </div>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        const email = 'joshua369x' + '@' + 'gmail.com';
+        const subject = '?subject=Inquiry: 143.baby';
+        const mailto = 'mailto:' + email + subject;
+        document.querySelector('.email-link').href = mailto;
+        document.getElementById('email-display').textContent = email;
+    </script>
+</body>
+</html>
