@@ -3,168 +3,321 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>143.baby</title>
-    <meta name="description" content="143.baby — A numeric code of love: I Love You, I Miss You, I Want You.">
+    <title>143.baby - A Declaration of Love</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            line-height: 1.6; 
-            color: #5a4a42; 
-            background: linear-gradient(135deg, #fdf9fb 0%, #faf5f8 100%);
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            padding: 20px; 
-            text-align: center; 
-            position: relative; 
-            overflow-x: hidden; 
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Dancing+Script:wght@700&family=Lobster&family=Sacramento&family=Roboto:wght@300;400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            overflow-x: hidden;
+            text-align: center;
         }
-        .light-effect { 
-            position: absolute; 
-            top: 50%; 
-            left: 50%; 
-            width: min(120vw, 1000px); 
-            height: min(120vh, 1000px); 
-            background: radial-gradient(circle at center, rgba(233, 168, 184, 0.08) 0%, transparent 65%);
-            transform: translate(-50%, -50%); 
-            pointer-events: none; 
-            z-index: -1; 
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
         }
-        .container { 
-            max-width: 760px; 
-            width: 100%; 
-            padding: 70px 40px; 
-            background: rgba(255, 253, 250, 0.85);
-            backdrop-filter: blur(12px); 
-            border-radius: 28px; 
-            box-shadow: 
-                0 15px 50px rgba(0, 0, 0, 0.06),
-                0 0 0 1px rgba(233, 168, 184, 0.2);
-            border: 1px solid rgba(233, 168, 184, 0.15); 
-            z-index: 1; 
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
-        h1 { 
-            font-size: clamp(4rem, 12vw, 7.2rem);
-            font-weight: 300; 
-            letter-spacing: 0.1em; 
-            margin-bottom: 20px; 
-            opacity: 0.95; 
-            color: #e9a8b8;
+
+        .header {
+            padding: 80px 0;
         }
-        .domain { display: inline-block; transition: opacity 0.3s ease; }
-        .domain:hover { opacity: 0.85; }
-        .meaning { 
-            font-size: clamp(1.1rem, 4vw, 1.4rem); 
-            opacity: 0.88; 
-            max-width: 600px; 
-            margin: 0 auto 40px; 
-            line-height: 1.9; 
-            color: #7a6860;
+
+        .domain-title {
+            font-size: 6rem;
+            font-weight: 700;
+            animation: font-cycle 15s infinite;
+            text-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
+        }
+
+        @keyframes font-cycle {
+            0%, 100% { font-family: 'Playfair Display', serif; opacity: 0.9; transform: scale(1); }
+            25% { font-family: 'Dancing Script', cursive; opacity: 1; transform: scale(1.05); }
+            50% { font-family: 'Lobster', cursive; opacity: 0.9; transform: scale(1); }
+            75% { font-family: 'Sacramento', cursive; opacity: 1; transform: scale(1.1); color: #ffc0cb; }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: #ccc;
+        }
+
+        .section {
+            padding: 60px 0;
+            border-bottom: 1px solid #333;
+        }
+        
+        .section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: #ff8acb;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto 20px auto;
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: #f0c4ff;
+            background: linear-gradient(90deg, #ff8acb, #f0c4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .emphasis {
             font-style: italic;
+            color: #bde0fe;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
         }
-        .note-section { 
-            background: rgba(250, 245, 240, 0.6); 
-            border-radius: 18px; 
-            padding: 28px; 
-            margin: 40px 0; 
-            border: 1px solid rgba(212, 178, 160, 0.25); 
+
+        .domains-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
         }
-        .note-text { 
-            font-size: 0.98rem; 
-            opacity: 0.75; 
-            line-height: 1.8; 
-            color: #8a7a70;
+
+        .domain-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #444;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .contact-section { margin-top: 40px; }
-        .email-link { 
-            font-size: 1.5rem; 
-            color: #d4b2a0; 
-            text-decoration: none; 
-            font-family: 'Courier New', monospace; 
-            padding: 12px 26px; 
-            background: rgba(212, 178, 160, 0.12); 
-            border-radius: 12px; 
-            display: inline-block; 
-            border: 1px solid rgba(212, 178, 160, 0.4); 
-            transition: all 0.3s ease; 
+
+        .domain-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
         }
-        .email-link:hover { 
-            background: rgba(212, 178, 160, 0.22); 
-            transform: translateY(-3px); 
-            box-shadow: 0 6px 16px rgba(212, 178, 160, 0.15); 
+
+        .domain-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: #ffc0cb;
+            margin-top: 0;
         }
-        .contact-note { 
-            font-size: 0.95rem; 
-            opacity: 0.65; 
-            margin-top: 18px; 
-            font-style: italic; 
-            color: #a09080;
+
+        .price-section {
+            background: rgba(255, 105, 180, 0.1);
+            padding: 50px 20px;
+            border-radius: 15px;
+            border: 1px solid #ff69b4;
         }
-        .footer { 
-            position: absolute; 
-            bottom: 30px; 
-            font-size: 0.85rem; 
-            opacity: 0.5; 
-            width: 100%; 
-            text-align: center; 
-            color: #b0a090;
+
+        .price {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
         }
-        @media (max-width: 768px) { 
-            .container { padding: 50px 30px; margin: 20px; } 
-            .email-link { font-size: 1.3rem; } 
-            h1 { 
-                font-size: clamp(3.4rem, 14vw, 5.8rem);
-                letter-spacing: 0.05em;
-            }
-            .meaning { 
-                font-size: clamp(1rem, 4.5vw, 1.3rem);
-            }
+
+        .installments {
+            font-size: 1.3rem;
+            color: #ddd;
         }
+
+        .buy-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 18px 40px;
+            background: linear-gradient(45deg, #ff69b4, #ff8acb);
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.4);
+        }
+
+        .buy-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 105, 180, 0.6);
+        }
+
+        .contact-section {
+            padding: 40px 0;
+        }
+        
+        .email-link {
+            color: #bde0fe;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            border-bottom: 1px dashed #bde0fe;
+            transition: color 0.3s;
+        }
+
+        .email-link:hover {
+            color: #fff;
+        }
+        
+        #copy-notification {
+            display: inline-block;
+            margin-left: 15px;
+            color: #4caf50;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
     </style>
 </head>
 <body>
-    <div class="light-effect"></div>
-    <div class="container">
-        <h1><span class="domain">143.baby</span></h1>
-        <div class="meaning">
-            143 = I Love You<br>
-            143 = I Miss You<br>
-            143 = I Want You
-        </div>
-        
-        <!-- 低调中性免责声明 -->
-        <div class="note-section">
-            <div class="note-text">
-                This numeric expression is a widely recognized cultural symbol of affection. 
-                This domain is reserved for future development and is not associated with any third party.
-            </div>
-        </div>
-        
-        <!-- 联系方式 -->
-        <div class="contact-section">
-            <a href="#" class="email-link" aria-label="Send email">
-                <span id="email-display">joshua369x@gmail.com</span>
-            </a>
-            <div class="contact-note">
-                For sincere inquiries only.
-            </div>
-        </div>
-    </div>
 
-    <div class="footer">
-        © <span id="currentYear"></span> 143.baby — All rights reserved.
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="domain-title">143.baby</h1>
+            <p class="subtitle">"I Love You, Baby."</p>
+        </header>
+
+        <section class="section">
+            <h2>A Domain That is a Sentence.</h2>
+            <p>In the digital universe, brevity is poetry. <span class="highlight">143.baby</span> is not merely a domain; it is a complete, heartfelt message. "I love you / I miss you / I need you, Baby."</p>
+            <p>The pairing of <span class="emphasis">143</span> and <span class="emphasis">baby</span> is not a coincidence, it is a <span class="highlight">match made in heaven</span>. It captures the essence of human connection in its purest form—a digital whisper of affection that resonates universally.</p>
+        </section>
+
+        <section class="section">
+            <h2>The Essence of Humanity in an Age of AI.</h2>
+            <p>As we stand on the precipice of the AGI era, the line between silicon and carbon-based life blurs. What will define us? What is the core of our being that cannot be replicated by algorithms?</p>
+            <p>The answer is <span class="highlight">love and longing</span>. The profound, irrational, deeply biological force that drives us. <span class="highlight">143.baby</span> is a testament to this truth. It is a declaration that the essence of humanity—the meaning of our existence—is found in the simple, powerful act of loving another.</p>
+        </section>
+        
+        <section class="section">
+            <h2>The 9 Domains of Family Love: A Universe of Potential</h2>
+            <p>This domain is the perfect digital home for any brand, service, or platform centered around the sacred bond of family. Its applications are as vast as love itself:</p>
+            <div class="domains-grid">
+                <div class="domain-card"><h3>1. New Beginnings</h3><p>Maternity services, baby products, adoption agencies.</p></div>
+                <div class="domain-card"><h3>2. Growth & Learning</h3><p>Parenting blogs, educational toys, childhood development resources.</p></div>
+                <div class="domain-card"><h3>3. Health & Wellness</h3><p>Family health platforms, pediatric care, mental wellness apps.</p></div>
+                <div class="domain-card"><h3>4. Cherished Memories</h3><p>Photo storage, family albums, digital legacy creation.</p></div>
+                <div class="domain-card"><h3>5. Heartfelt Gifts</h3><p>Personalized gifts, flower delivery, special occasion planning.</p></div>
+                <div class="domain-card"><h3>6. Connected Home</h3><p>Family organizers, smart home tech for safety, communication apps.</p></div>
+                <div class="domain-card"><h3>7. Financial Future</h3><p>Family financial planning, children's savings, insurance.</p></div>
+                <div class="domain-card"><h3>8. Global Family</h3><p>Connecting families across distances, genealogy, cultural exchange.</p></div>
+                <div class="domain-card"><h3>9. Support & Community</h3><p>Parenting forums, support groups, family counseling services.</p></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="price-section">
+                <h2>Own a Piece of the Human Heart</h2>
+                <div class="price">$14,300 USD</div>
+                <div class="installments">Or 10 monthly installments of $1,430</div>
+                <a href="https://www.spaceship.com/s/buy/143.baby/WJDarTVh0ferR7uC" target="_blank" class="buy-button">Acquire 143.baby Now</a>
+            </div>
+        </section>
+        
+        <footer class="contact-section">
+            <p>For inquiries, please contact:</p>
+            <p>
+                <span id="email" class="email-link">joshua369x@gmail.com</span>
+                <span id="copy-notification">Copied!</span>
+            </p>
+        </footer>
+
     </div>
 
     <script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-        const email = 'joshua369x' + '@' + 'gmail.com';
-        const subject = '?subject=Inquiry: 143.baby';
-        const mailto = 'mailto:' + email + subject;
-        document.querySelector('.email-link').href = mailto;
-        document.getElementById('email-display').textContent = email;
+        // Background Animation
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        const particleChars = ['❤', '1', '4', '3', '0'];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 15 + 5;
+                this.speedY = Math.random() * 1 + 0.5;
+                this.char = particleChars[Math.floor(Math.random() * particleChars.length)];
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.y -= this.speedY;
+                if (this.y < 0) {
+                    this.y = canvas.height;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.char === '❤' ? '#ff69b4' : '#f0f0f0';
+                ctx.font = this.size + 'px Arial';
+                ctx.fillText(this.char, this.x, this.y);
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 100; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        initParticles();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        });
+
+        // Email copy
+        const emailLink = document.getElementById('email');
+        const notification = document.getElementById('copy-notification');
+        emailLink.addEventListener('click', () => {
+            navigator.clipboard.writeText('joshua369x@gmail.com').then(() => {
+                notification.style.opacity = '1';
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                }, 2000);
+            });
+        });
     </script>
 </body>
 </html>
